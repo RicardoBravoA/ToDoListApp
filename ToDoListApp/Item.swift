@@ -11,4 +11,8 @@ import Foundation
 class Item {
     var text = ""
     var checked = false
+    
+    func toggleCheck(){
+        checked = !checked
+    }
 }
