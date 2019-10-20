@@ -11,10 +11,16 @@ import UIKit
 class ToDoListViewController: UITableViewController {
 
     let toDoList = ToDoList()
+    @IBAction func addItem(_ sender: Any) {
+        let newRowIndex = toDoList.list.count
+        _ = toDoList.addItem()
+        let indexPath = IndexPath(row: newRowIndex, section:    0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,6 +32,11 @@ class ToDoListViewController: UITableViewController {
         showItemText(for: cell, with: toDoList.list[indexPath.row])
         configureIcon(for: cell, with: toDoList.list[indexPath.row])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        toDoList.list.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

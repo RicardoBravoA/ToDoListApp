@@ -20,4 +20,11 @@ class ToDoList {
         }
     }
     
+    func addItem() -> Item{
+        let item = Item()
+        item.text = "New Item"
+        list.append(item)
+        return item
+    }
+    
 }
