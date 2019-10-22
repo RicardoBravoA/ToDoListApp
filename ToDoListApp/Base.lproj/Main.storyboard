@@ -15,25 +15,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Item" id="lQl-K8-VT1">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="Item" id="lQl-K8-VT1">
+                                <rect key="frame" x="0.0" y="28" width="414" height="41.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lQl-K8-VT1" id="dJD-YL-QTl">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="350.5" height="41.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC3-mL-5hf">
-                                            <rect key="frame" x="20" y="11" width="330" height="21.5"/>
+                                            <rect key="frame" x="36" y="11" width="294.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y21-YO-Wex">
+                                            <rect key="frame" x="9" y="10" width="19" height="24.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="pC3-mL-5hf" secondAttribute="trailing" constant="20" symbolic="YES" id="NFX-Ke-nyC"/>
-                                        <constraint firstAttribute="bottom" secondItem="pC3-mL-5hf" secondAttribute="bottom" priority="750" constant="11" id="ZRe-xm-NZ0"/>
+                                        <constraint firstItem="Y21-YO-Wex" firstAttribute="leading" secondItem="dJD-YL-QTl" secondAttribute="leading" constant="9" id="6ne-gG-rrz"/>
+                                        <constraint firstAttribute="trailing" secondItem="pC3-mL-5hf" secondAttribute="trailing" constant="20" symbolic="YES" id="IRC-IR-0Qm"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pC3-mL-5hf" secondAttribute="trailing" constant="20" symbolic="YES" id="NFX-Ke-nyC"/>
+                                        <constraint firstItem="pC3-mL-5hf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y21-YO-Wex" secondAttribute="trailing" constant="8" symbolic="YES" id="P8g-Qa-ze4"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Y21-YO-Wex" secondAttribute="bottom" constant="-4" id="WyE-Hz-pnp"/>
+                                        <constraint firstAttribute="bottom" secondItem="pC3-mL-5hf" secondAttribute="bottom" priority="750" constant="9" id="ZRe-xm-NZ0"/>
+                                        <constraint firstItem="Y21-YO-Wex" firstAttribute="top" secondItem="dJD-YL-QTl" secondAttribute="topMargin" constant="-1" id="eDH-G3-tZu"/>
                                         <constraint firstItem="pC3-mL-5hf" firstAttribute="top" secondItem="dJD-YL-QTl" secondAttribute="top" priority="750" constant="11" id="t5Y-f2-kbr"/>
-                                        <constraint firstItem="pC3-mL-5hf" firstAttribute="leading" secondItem="dJD-YL-QTl" secondAttribute="leading" constant="20" symbolic="YES" id="zTM-sb-ckg"/>
+                                        <constraint firstItem="pC3-mL-5hf" firstAttribute="leading" secondItem="dJD-YL-QTl" secondAttribute="leading" constant="36" id="zTM-sb-ckg"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -46,7 +57,7 @@
                     <navigationItem key="navigationItem" title="ToDoList" id="iAU-tg-R7c">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nef-6U-tvp">
                             <connections>
-                                <segue destination="kP9-0H-GdG" kind="show" id="qMp-0K-TNT"/>
+                                <segue destination="kP9-0H-GdG" kind="show" identifier="AddItemSegue" id="qMp-0K-TNT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

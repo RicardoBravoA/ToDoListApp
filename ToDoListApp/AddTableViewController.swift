@@ -10,16 +10,24 @@ import UIKit
 
 class AddTableViewController: UITableViewController {
 
+    weak var delegate: AddItemViewControllerDelegate?
+    
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var btnAdd: UIBarButtonItem!
     @IBOutlet weak var btnCancel: UIBarButtonItem!
     
     @IBAction func cancel(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        delegate?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func add(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        let item = Item()
+        if let text = textfield.text {
+            item.text = text
+        }
+        delegate?.addItemViewController(self, didFinishAdding: item)
     }
     
     override func viewDidLoad() {
@@ -35,6 +43,11 @@ class AddTableViewController: UITableViewController {
         nil
     }
     
+}
+
+protocol AddItemViewControllerDelegate: class {
+    func addItemViewControllerDidCancel(_ controller: AddTableViewController)
+    func addItemViewController(_ controller: AddTableViewController, didFinishAdding item: Item)
 }
 
 extension AddTableViewController: UITextFieldDelegate {

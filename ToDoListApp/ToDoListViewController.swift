@@ -53,13 +53,40 @@ class ToDoListViewController: UITableViewController {
     }
     
     private func configureIcon(for cell: UITableViewCell, with item: Item){
+        guard let checkmark = cell.viewWithTag(998) as? UILabel else {
+            return
+        }
         if(item.checked) {
-            cell.accessoryType = .checkmark
+            checkmark.text = "✓"
         }else{
-            cell.accessoryType = .none
+            checkmark.text = ""
         }
         item.toggleCheck()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItemSegue" {
+            if let addTableViewController = segue.destination as? AddTableViewController {
+                addTableViewController.delegate = self
+            }
+            
+        }
     }
 
 }
 
+extension ToDoListViewController: AddItemViewControllerDelegate {
+    
+    func addItemViewControllerDidCancel(_ controller: AddTableViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddTableViewController, didFinishAdding item: Item) {
+        navigationController?.popViewController(animated: true)
+        let rowIndex = toDoList.list.count
+        toDoList.list.append(item)
+        let indexPath = IndexPath(row: rowIndex, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+}
