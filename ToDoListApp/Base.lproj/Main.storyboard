@@ -47,6 +47,9 @@
                                         <constraint firstItem="pC3-mL-5hf" firstAttribute="leading" secondItem="dJD-YL-QTl" secondAttribute="leading" constant="36" id="zTM-sb-ckg"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kP9-0H-GdG" kind="show" identifier="EditItemSegue" trigger="accessoryAction" id="CNe-lf-RhL"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -67,7 +70,7 @@
             </objects>
             <point key="canvasLocation" x="1279.7101449275362" y="142.63392857142856"/>
         </scene>
-        <!--Add Table View Controller-->
+        <!--Title-->
         <scene sceneID="BLV-LT-GNC">
             <objects>
                 <tableViewController id="kP9-0H-GdG" customClass="AddTableViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -110,13 +113,13 @@
                             <outlet property="delegate" destination="kP9-0H-GdG" id="UTg-UH-nDY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="v4Q-VT-qAq">
+                    <navigationItem key="navigationItem" title="Title" id="v4Q-VT-qAq">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="gzw-bx-3XF">
                             <connections>
                                 <action selector="cancel:" destination="kP9-0H-GdG" id="tfh-NA-uwa"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Add" id="maU-3I-NrB">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="maU-3I-NrB">
                             <connections>
                                 <action selector="add:" destination="kP9-0H-GdG" id="Hwu-uZ-djT"/>
                             </connections>
@@ -151,4 +154,7 @@
             <point key="canvasLocation" x="369.56521739130437" y="142.63392857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="CNe-lf-RhL"/>
+    </inferredMetricsTieBreakers>
 </document>

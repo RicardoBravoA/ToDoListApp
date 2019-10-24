@@ -69,7 +69,14 @@ class ToDoListViewController: UITableViewController {
             if let addTableViewController = segue.destination as? AddTableViewController {
                 addTableViewController.delegate = self
             }
-            
+        } else if segue.identifier == "EditItemSegue" {
+            if let addTableViewController = segue.destination as? AddTableViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+                    let item = toDoList.list[indexPath.row]
+                    addTableViewController.item = item
+                    addTableViewController.delegate = self
+                }
+            }
         }
     }
 
@@ -87,6 +94,17 @@ extension ToDoListViewController: AddItemViewControllerDelegate {
         toDoList.list.append(item)
         let indexPath = IndexPath(row: rowIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    func addItemViewController(_ controller: AddTableViewController, didFinishEditing item: Item) {
+        navigationController?.popViewController(animated: true)
+        if let index = toDoList.list.firstIndex(of: item){
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath){
+                showItemText(for: cell, with: item)
+            }
+        }
+    
     }
     
 }

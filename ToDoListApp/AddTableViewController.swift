@@ -11,27 +11,39 @@ import UIKit
 class AddTableViewController: UITableViewController {
 
     weak var delegate: AddItemViewControllerDelegate?
+    weak var todoList: ToDoList?
+    weak var item: Item?
     
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var btnAdd: UIBarButtonItem!
     @IBOutlet weak var btnCancel: UIBarButtonItem!
     
     @IBAction func cancel(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
         delegate?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func add(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        let item = Item()
-        if let text = textfield.text {
-            item.text = text
+        if let itemToEdit = item, let text = textfield.text {
+            item?.text = text
+            delegate?.addItemViewController(self, didFinishEditing: itemToEdit)
+        } else {
+            let item = Item()
+            if let text = textfield.text {
+                item.text = text
+            }
+            delegate?.addItemViewController(self, didFinishAdding: item)
         }
-        delegate?.addItemViewController(self, didFinishAdding: item)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let item = item {
+            title = "Edit Item"
+            textfield.text = item.text
+        }else {
+            title = "New Item"
+        }
         navigationItem.largeTitleDisplayMode = .never
     }
     
@@ -48,6 +60,7 @@ class AddTableViewController: UITableViewController {
 protocol AddItemViewControllerDelegate: class {
     func addItemViewControllerDidCancel(_ controller: AddTableViewController)
     func addItemViewController(_ controller: AddTableViewController, didFinishAdding item: Item)
+    func addItemViewController(_ controller: AddTableViewController, didFinishEditing item: Item)
 }
 
 extension AddTableViewController: UITextFieldDelegate {

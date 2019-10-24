@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Item {
+class Item : NSObject {
     var text = ""
     var checked = false
     
