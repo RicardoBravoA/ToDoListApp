@@ -10,7 +10,7 @@ import UIKit
 
 class ItemDetailViewController: UITableViewController {
 
-    weak var delegate: AddItemViewControllerDelegate?
+    weak var delegate: ItemDetailViewControllerDelegate?
     weak var todoList: ToDoList?
     weak var item: Item?
     
@@ -19,19 +19,19 @@ class ItemDetailViewController: UITableViewController {
     @IBOutlet weak var btnCancel: UIBarButtonItem!
     
     @IBAction func cancel(_ sender: Any) {
-        delegate?.addItemViewControllerDidCancel(self)
+        delegate?.addItemDetailViewControllerDidCancel(self)
     }
     
     @IBAction func add(_ sender: Any) {
         if let itemToEdit = item, let text = textfield.text {
             item?.text = text
-            delegate?.addItemViewController(self, didFinishEditing: itemToEdit)
+            delegate?.addItemDetailViewController(self, didFinishEditing: itemToEdit)
         } else {
             let item = Item()
             if let text = textfield.text {
                 item.text = text
             }
-            delegate?.addItemViewController(self, didFinishAdding: item)
+            delegate?.addItemDetailViewController(self, didFinishAdding: item)
         }
         
     }
@@ -57,10 +57,10 @@ class ItemDetailViewController: UITableViewController {
     
 }
 
-protocol AddItemViewControllerDelegate: class {
-    func addItemViewControllerDidCancel(_ controller: ItemDetailViewController)
-    func addItemViewController(_ controller: ItemDetailViewController, didFinishAdding item: Item)
-    func addItemViewController(_ controller: ItemDetailViewController, didFinishEditing item: Item)
+protocol ItemDetailViewControllerDelegate: class {
+    func addItemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
+    func addItemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: Item)
+    func addItemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: Item)
 }
 
 extension ItemDetailViewController: UITextFieldDelegate {
