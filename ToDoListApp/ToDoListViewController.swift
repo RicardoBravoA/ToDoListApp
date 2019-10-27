@@ -12,10 +12,12 @@ class ToDoListViewController: UITableViewController {
 
     let toDoList = ToDoList()
     @IBAction func addItem(_ sender: Any) {
+        /*
         let newRowIndex = toDoList.list.count
         _ = toDoList.addItem()
         let indexPath = IndexPath(row: newRowIndex, section:    0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        */
     }
     
     override func viewDidLoad() {
@@ -66,11 +68,11 @@ class ToDoListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItemSegue" {
-            if let addTableViewController = segue.destination as? AddTableViewController {
+            if let addTableViewController = segue.destination as? ItemDetailViewController {
                 addTableViewController.delegate = self
             }
         } else if segue.identifier == "EditItemSegue" {
-            if let addTableViewController = segue.destination as? AddTableViewController {
+            if let addTableViewController = segue.destination as? ItemDetailViewController {
                 if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
                     let item = toDoList.list[indexPath.row]
                     addTableViewController.item = item
@@ -84,11 +86,11 @@ class ToDoListViewController: UITableViewController {
 
 extension ToDoListViewController: AddItemViewControllerDelegate {
     
-    func addItemViewControllerDidCancel(_ controller: AddTableViewController) {
+    func addItemViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemViewController(_ controller: AddTableViewController, didFinishAdding item: Item) {
+    func addItemViewController(_ controller: ItemDetailViewController, didFinishAdding item: Item) {
         navigationController?.popViewController(animated: true)
         let rowIndex = toDoList.list.count
         toDoList.list.append(item)
@@ -96,7 +98,7 @@ extension ToDoListViewController: AddItemViewControllerDelegate {
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
-    func addItemViewController(_ controller: AddTableViewController, didFinishEditing item: Item) {
+    func addItemViewController(_ controller: ItemDetailViewController, didFinishEditing item: Item) {
         navigationController?.popViewController(animated: true)
         if let index = toDoList.list.firstIndex(of: item){
             let indexPath = IndexPath(row: index, section: 0)

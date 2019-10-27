@@ -15,7 +15,7 @@
 		2859C909235BD65B00B618CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2859C907235BD65B00B618CD /* LaunchScreen.storyboard */; };
 		2859C911235BE73D00B618CD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859C910235BE73D00B618CD /* Item.swift */; };
 		2859C913235C0E3F00B618CD /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859C912235C0E3F00B618CD /* ToDoList.swift */; };
-		2859C915235C2F2400B618CD /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859C914235C2F2400B618CD /* AddTableViewController.swift */; };
+		2859C915235C2F2400B618CD /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859C914235C2F2400B618CD /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		2859C90A235BD65B00B618CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2859C910235BE73D00B618CD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2859C912235C0E3F00B618CD /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
-		2859C914235C2F2400B618CD /* AddTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTableViewController.swift; sourceTree = "<group>"; };
+		2859C914235C2F2400B618CD /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 				2859C907235BD65B00B618CD /* LaunchScreen.storyboard */,
 				2859C90A235BD65B00B618CD /* Info.plist */,
 				2859C912235C0E3F00B618CD /* ToDoList.swift */,
-				2859C914235C2F2400B618CD /* AddTableViewController.swift */,
+				2859C914235C2F2400B618CD /* ItemDetailViewController.swift */,
 			);
 			path = ToDoListApp;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 				2859C913235C0E3F00B618CD /* ToDoList.swift in Sources */,
 				2859C8FD235BD65A00B618CD /* AppDelegate.swift in Sources */,
 				2859C8FF235BD65A00B618CD /* SceneDelegate.swift in Sources */,
-				2859C915235C2F2400B618CD /* AddTableViewController.swift in Sources */,
+				2859C915235C2F2400B618CD /* ItemDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
