@@ -27,4 +27,12 @@ class ToDoList {
         return item
     }
     
+    func move(item: Item, index: Int){
+        guard let currentIndex = list.firstIndex(of: item) else {
+            return
+        }
+        list.remove(at: currentIndex)
+        list.insert(item, at: index)
+    }
+    
 }

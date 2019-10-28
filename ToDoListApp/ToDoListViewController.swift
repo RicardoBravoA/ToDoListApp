@@ -23,8 +23,14 @@ class ToDoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        tableView.setEditing(tableView.isEditing, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         toDoList.list.count
     }
@@ -43,27 +49,33 @@ class ToDoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath){
-            configureIcon(for: cell, with: toDoList.list[indexPath.row])
+            let item = toDoList.list[indexPath.row]
+            item.toggleCheck()
+            configureIcon(for: cell, with: item)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        toDoList.move(item: toDoList.list[sourceIndexPath.row], index: destinationIndexPath.row)
+        tableView.reloadData()
+    }
+    
     private func showItemText(for cell: UITableViewCell, with item: Item) {
-        if let label = cell.viewWithTag(999) as? UILabel {
-            label.text = item.text
+        if let toDoCell = cell as? ToDoListTableViewCell {
+            toDoCell.cellTextLabel.text = item.text
         }
     }
     
     private func configureIcon(for cell: UITableViewCell, with item: Item){
-        guard let checkmark = cell.viewWithTag(998) as? UILabel else {
+        guard let todoCell = cell as? ToDoListTableViewCell else {
             return
         }
         if(item.checked) {
-            checkmark.text = "✓"
+            todoCell.checkLabel.text = "✓"
         }else{
-            checkmark.text = ""
+            todoCell.checkLabel.text = ""
         }
-        item.toggleCheck()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
