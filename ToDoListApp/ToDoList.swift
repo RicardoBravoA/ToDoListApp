@@ -35,4 +35,12 @@ class ToDoList {
         list.insert(item, at: index)
     }
     
+    func delete(items: [Item]) {
+        for item in items {
+            if let index = list.firstIndex(of: item){
+                list.remove(at: index)
+            }
+        }
+    }
+    
 }

@@ -20,10 +20,24 @@ class ToDoListViewController: UITableViewController {
         */
     }
     
+    @IBAction func deleteItems(_ sender: Any) {
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+            var items = [Item]()
+            for indexPath in selectedRows {
+                items.append(toDoList.list[indexPath.row])
+            }
+            toDoList.delete(items: items)
+            tableView.beginUpdates()
+            tableView.deleteRows(at: selectedRows, with: .automatic)
+            tableView.endUpdates()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = editButtonItem
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -48,6 +62,10 @@ class ToDoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            return
+        }
+        
         if let cell = tableView.cellForRow(at: indexPath){
             let item = toDoList.list[indexPath.row]
             item.toggleCheck()

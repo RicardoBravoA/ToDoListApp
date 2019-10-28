@@ -61,11 +61,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDoList" id="iAU-tg-R7c">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nef-6U-tvp">
-                            <connections>
-                                <segue destination="kP9-0H-GdG" kind="show" identifier="AddItemSegue" id="qMp-0K-TNT"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Nef-6U-tvp">
+                                <connections>
+                                    <segue destination="kP9-0H-GdG" kind="show" identifier="AddItemSegue" id="qMp-0K-TNT"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Delete" id="aJn-sG-p0b">
+                                <connections>
+                                    <action selector="deleteItems:" destination="DIM-JY-PAc" id="Y4Q-RN-grH"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
@@ -158,6 +165,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CNe-lf-RhL"/>
+        <segue reference="qMp-0K-TNT"/>
     </inferredMetricsTieBreakers>
 </document>
