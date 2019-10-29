@@ -43,7 +43,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="Y21-YO-Wex" secondAttribute="bottom" constant="-4" id="WyE-Hz-pnp"/>
                                         <constraint firstAttribute="bottom" secondItem="pC3-mL-5hf" secondAttribute="bottom" constant="9" id="ZRe-xm-NZ0"/>
                                         <constraint firstItem="Y21-YO-Wex" firstAttribute="top" secondItem="dJD-YL-QTl" secondAttribute="topMargin" constant="-1" id="eDH-G3-tZu"/>
-                                        <constraint firstItem="pC3-mL-5hf" firstAttribute="top" secondItem="dJD-YL-QTl" secondAttribute="top" constant="11" id="t5Y-f2-kbr"/>
+                                        <constraint firstItem="pC3-mL-5hf" firstAttribute="top" secondItem="dJD-YL-QTl" secondAttribute="top" priority="750" constant="11" id="t5Y-f2-kbr"/>
                                         <constraint firstItem="pC3-mL-5hf" firstAttribute="leading" secondItem="dJD-YL-QTl" secondAttribute="leading" constant="36" id="zTM-sb-ckg"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -51,7 +51,7 @@
                                     <outlet property="cellTextLabel" destination="pC3-mL-5hf" id="rbB-8w-21C"/>
                                     <outlet property="checkLabel" destination="Y21-YO-Wex" id="9W0-dh-0Bs"/>
                                     <outlet property="textLabel" destination="pC3-mL-5hf" id="hgM-ZO-cQf"/>
-                                    <segue destination="kP9-0H-GdG" kind="show" identifier="EditItemSegue" trigger="accessoryAction" id="CNe-lf-RhL"/>
+                                    <segue destination="kP9-0H-GdG" kind="show" identifier="EditItemSegue" trigger="accessoryAction" id="j6m-GX-LXm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -165,6 +165,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qMp-0K-TNT"/>
+        <segue reference="j6m-GX-LXm"/>
     </inferredMetricsTieBreakers>
 </document>

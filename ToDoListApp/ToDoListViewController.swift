@@ -96,7 +96,12 @@ class ToDoListViewController: UITableViewController {
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return !tableView.isEditing
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "AddItemSegue" {
             if let itemDetailViewController = segue.destination as? ItemDetailViewController {
                 itemDetailViewController.delegate = self
@@ -116,16 +121,23 @@ class ToDoListViewController: UITableViewController {
 
 extension ToDoListViewController: ItemDetailViewControllerDelegate {
     
+    
+    
     func addItemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
     
     func addItemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: Item) {
         navigationController?.popViewController(animated: true)
-        let rowIndex = toDoList.list.count
-        toDoList.list.append(item)
-        let indexPath = IndexPath(row: rowIndex, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+       
+        // las huellas de George!!!
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+            let rowIndex = self.toDoList.list.count
+            self.toDoList.list.append(item)
+            let indexPath = IndexPath(row: rowIndex, section: 0)
+            self.tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+
     }
     
     func addItemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: Item) {
