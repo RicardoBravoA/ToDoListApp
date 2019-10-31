@@ -176,7 +176,7 @@ extension ToDoListViewController: ItemDetailViewControllerDelegate {
         navigationController?.popViewController(animated: true)
         if let index = toDoList.list.firstIndex(of: item){
             let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath){
+            if let cell = tableView.cellForRow(at: indexPath) {
                 showItemText(for: cell, with: item)
             }
         }
