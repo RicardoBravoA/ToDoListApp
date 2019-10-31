@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ToDoList {
+class ToDoList{
     
     var list = [Item]()
     
