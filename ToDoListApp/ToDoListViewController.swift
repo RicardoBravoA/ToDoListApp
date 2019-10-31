@@ -11,6 +11,8 @@ import UIKit
 class ToDoListViewController: UITableViewController {
 
     let toDoList = ToDoList()
+    var tableData = [[Item?]?]()
+    
     @IBAction func addItem(_ sender: Any) {
         /*
         let newRowIndex = toDoList.list.count
@@ -38,6 +40,19 @@ class ToDoListViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = editButtonItem
         tableView.allowsMultipleSelectionDuringEditing = true
+        
+        let sectionTitleCount = UILocalizedIndexedCollation.current().sectionTitles.count
+        var allSections = [[Item?]?](repeating: nil, count: sectionTitleCount)
+        var sectionNumber = 0
+        let collation = UILocalizedIndexedCollation.current()
+        for item in toDoList.list {
+            sectionNumber = collation.section(for: item, collationStringSelector: #selector(getter: Item.text))
+            if(allSections[sectionNumber] == nil){
+                allSections[sectionNumber] = [Item?]()
+            }
+            allSections[sectionNumber]!.append(item)
+        }
+        tableData = allSections
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -46,13 +61,15 @@ class ToDoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        toDoList.list.count
+        return tableData[section] == nil ? 0 : tableData[section]!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Item", for: indexPath)
-        showItemText(for: cell, with: toDoList.list[indexPath.row])
-        configureIcon(for: cell, with: toDoList.list[indexPath.row])
+        if let item = tableData[indexPath.section]?[indexPath.row] {
+            showItemText(for: cell, with: item)
+            configureIcon(for: cell, with: item)
+        }
         return cell
     }
     
@@ -116,6 +133,22 @@ class ToDoListViewController: UITableViewController {
             }
         }
     }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        tableData.count
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        UILocalizedIndexedCollation.current().sectionTitles
+    }
+    
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        UILocalizedIndexedCollation.current().section(forSectionIndexTitle: index)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        UILocalizedIndexedCollation.current().sectionTitles[section]
+    }
 
 }
 
@@ -129,15 +162,14 @@ extension ToDoListViewController: ItemDetailViewControllerDelegate {
     
     func addItemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: Item) {
         navigationController?.popViewController(animated: true)
-       
-        // las huellas de George!!!
+    
+        // George was here!!!
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             let rowIndex = self.toDoList.list.count
             self.toDoList.list.append(item)
             let indexPath = IndexPath(row: rowIndex, section: 0)
             self.tableView.insertRows(at: [indexPath], with: .automatic)
         }
-
     }
     
     func addItemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: Item) {

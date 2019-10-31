@@ -9,7 +9,7 @@
 import Foundation
 
 class Item : NSObject {
-    var text = ""
+    @objc var text = ""
     var checked = false
     
     func toggleCheck(){
